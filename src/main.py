@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """USD1 Daily Report - Main entry point."""
 
+import os
 import sys
 from datetime import date
 
@@ -11,9 +12,9 @@ from src.adapters import ADAPTERS
 from src.schema import Row
 
 
-# Telegram config - UPDATE THESE OR USE ENVIRONMENT VARIABLES
-TELEGRAM_BOT_TOKEN = "8238587481:AAFbDZcHupmW4mDiwuMuldAP0qoOWOIBPpI"
-TELEGRAM_CHAT_ID = "5908534297"
+# Telegram config - Set these as environment variables
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 
 # Protocol URLs for linking
 PROTOCOL_URLS = {
@@ -196,6 +197,14 @@ def send_telegram_message(message: str) -> bool:
 
 def main() -> int:
     """Main entry point."""
+    # Check for required environment variables
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        print("Error: TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID environment variables are required.")
+        print("Set them with:")
+        print("  export TELEGRAM_BOT_TOKEN='your_token'")
+        print("  export TELEGRAM_CHAT_ID='your_chat_id'")
+        return 1
+
     try:
         # Fetch all data
         print("Fetching stablecoin data...")

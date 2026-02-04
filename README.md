@@ -25,18 +25,20 @@ pip install -r requirements.txt
 
 ## Configuration
 
-Edit `src/main.py` to set your Telegram credentials:
+Set your Telegram credentials as environment variables:
 
-```python
-TELEGRAM_BOT_TOKEN = "your_bot_token"
-TELEGRAM_CHAT_ID = "your_chat_id"
+```bash
+export TELEGRAM_BOT_TOKEN='your_bot_token'
+export TELEGRAM_CHAT_ID='your_chat_id'
 ```
+
+Or create a `.env` file based on `.env.example`.
 
 ## Usage
 
 ```bash
 # Run the report
-python -m src.main
+TELEGRAM_BOT_TOKEN='xxx' TELEGRAM_CHAT_ID='xxx' python -m src.main
 ```
 
 ## Output Example
