@@ -2,8 +2,8 @@ name: USD1 Daily Report
 
 on:
   schedule:
-    # Run at 7pm every day (Beijing Time UTC+8 = 11:00 UTC)
-    - cron: '0 11 * * *'
+    # Run at 6:30pm every day (Beijing Time UTC+8 = 10:30 UTC)
+    - cron: '30 10 * * *'
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
